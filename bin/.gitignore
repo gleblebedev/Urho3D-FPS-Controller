@@ -1,0 +1,13 @@
+DefaultData/
+Editor/
+GameData/
+CoreData/
+Autoload/
+tool/
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.ps3
+*.vs3
+*.bat

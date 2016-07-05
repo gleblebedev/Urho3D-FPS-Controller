@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "execPath": "F:/_Projects/FPS/Engine/bin/GamePlayer_d.exe",
+  "defaultFlags": "-lint -log warning -timeout 2000",
+  "defaultPackages": "DefaultData;CoreData;GameData"
+}

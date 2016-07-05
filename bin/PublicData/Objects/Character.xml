@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<node id="16777226">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Character" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="-7 1.48094 6.56936e-06" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<component type="LuaScriptInstance" id="16777275">
+		<attribute name="Script File" value="LuaFile;Scripts/mainFPS.lua" />
+		<attribute name="Script Object Type" value="Character" />
+		<attribute name="Script Data" value="0 0 0 0 0 0 0 0" />
+		<attribute name="crouching" value="false" />
+		<attribute name="onGround" value="false" />
+		<attribute name="highImpulseDetected" value="false" />
+		<attribute name="velocity" value="0 0 0" />
+		<attribute name="nearGround" value="false" />
+		<attribute name="okToJump" value="true" />
+		<attribute name="moveMag" value="0" />
+		<attribute name="dropDetected" value="true" />
+		<attribute name="okToStand" value="true" />
+		<attribute name="jumped" value="false" />
+		<attribute name="jumpReleased" value="true" />
+		<attribute name="inAirTimer" value="0" />
+		<attribute name="jumpTimer" value="0" />
+	</component>
+	<component type="CollisionShape" id="16777276">
+		<attribute name="Shape Type" value="Capsule" />
+		<attribute name="Size" value="0.8 2 0.8" />
+		<attribute name="Offset Position" value="0 1 0" />
+	</component>
+	<component type="RigidBody" id="16777274">
+		<attribute name="Physics Position" value="-7 1.48094 6.56936e-06" />
+		<attribute name="Mass" value="80" />
+		<attribute name="Friction" value="0" />
+		<attribute name="Angular Factor" value="0 0 0" />
+		<attribute name="Collision Layer" value="2" />
+		<attribute name="Collision Mask" value="127" />
+		<attribute name="Collision Event Mode" value="Always" />
+	</component>
+	<node id="16777331">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="DropDetect" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="RigidBody" id="16777709">
+			<attribute name="Physics Position" value="-7 1.48094 6.56936e-06" />
+			<attribute name="Mass" value="0.1" />
+			<attribute name="Friction" value="0" />
+			<attribute name="Angular Factor" value="0 0 0" />
+			<attribute name="Linear Rest Threshold" value="0" />
+			<attribute name="Collision Layer" value="128" />
+			<attribute name="Collision Mask" value="1" />
+			<attribute name="Contact Threshold" value="0.1" />
+			<attribute name="Collision Event Mode" value="Always" />
+			<attribute name="Use Gravity" value="false" />
+			<attribute name="Is Trigger" value="true" />
+		</component>
+		<component type="CollisionShape" id="16777710">
+			<attribute name="Shape Type" value="Cylinder" />
+			<attribute name="Size" value="0.2 0.5 0.2" />
+		</component>
+		<component type="Constraint" id="16777759">
+			<attribute name="Other Body NodeID" value="16777226" />
+			<attribute name="Disable Collision" value="true" />
+		</component>
+	</node>
+	<node id="16777347">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="StandDetect" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="9.82658 -7.67103 -7.89917" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="CollisionShape" id="16777881">
+			<attribute name="Shape Type" value="Capsule" />
+			<attribute name="Size" value="0.7 1.9 0.7" />
+			<attribute name="Offset Position" value="0 1.1 0" />
+		</component>
+		<component type="Constraint" id="16777883">
+			<attribute name="Other Body NodeID" value="16777226" />
+			<attribute name="Disable Collision" value="true" />
+		</component>
+		<component type="RigidBody" id="16777884">
+			<attribute name="Physics Position" value="-7 1.48094 6.56936e-06" />
+			<attribute name="Mass" value="0.1" />
+			<attribute name="Friction" value="0" />
+			<attribute name="Angular Factor" value="0 0 0" />
+			<attribute name="Linear Rest Threshold" value="0" />
+			<attribute name="Collision Layer" value="128" />
+			<attribute name="Collision Mask" value="1" />
+			<attribute name="Collision Event Mode" value="Always" />
+			<attribute name="Use Gravity" value="false" />
+			<attribute name="Is Trigger" value="true" />
+		</component>
+	</node>
+	<node id="16777352">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="GroundDetect" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="CollisionShape" id="16777933">
+			<attribute name="Shape Type" value="Sphere" />
+			<attribute name="Size" value="0.9 0 0.9" />
+			<attribute name="Offset Position" value="0 0.3 0" />
+		</component>
+		<component type="Constraint" id="16777934">
+			<attribute name="Other Body NodeID" value="16777226" />
+			<attribute name="Disable Collision" value="true" />
+		</component>
+		<component type="RigidBody" id="16777935">
+			<attribute name="Physics Position" value="-7 1.48094 6.56936e-06" />
+			<attribute name="Mass" value="0.1" />
+			<attribute name="Friction" value="0" />
+			<attribute name="Angular Factor" value="0 0 0" />
+			<attribute name="Linear Rest Threshold" value="0" />
+			<attribute name="Collision Layer" value="128" />
+			<attribute name="Collision Mask" value="1" />
+			<attribute name="Collision Event Mode" value="Always" />
+			<attribute name="Use Gravity" value="false" />
+			<attribute name="Is Trigger" value="true" />
+		</component>
+	</node>
+</node>

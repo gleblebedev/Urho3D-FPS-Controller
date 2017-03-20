@@ -101,6 +101,9 @@ namespace Urho3D_FPS_Controller
         {
             // Component has been inserted into its scene node. Subscribe to events now
             node.SubscribeToNodeCollision(HandleNodeCollision);
+            node.GetChild("DropDetect",false).SubscribeToNodeCollision(HandleNodeCollision);
+            node.GetChild("StandDetect", false).SubscribeToNodeCollision(HandleNodeCollision);
+            node.GetChild("GroundDetect", false).SubscribeToNodeCollision(HandleNodeCollision);
             //TODO: Should be BeginRendering event
             //node.SubscribeToNodeCollision(HandleRenderUpdate);
 

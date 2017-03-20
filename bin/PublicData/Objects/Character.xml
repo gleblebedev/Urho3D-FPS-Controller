@@ -7,6 +7,7 @@
 	<attribute name="Rotation" value="1 0 0 0" />
 	<attribute name="Scale" value="1 1 1" />
 	<attribute name="Variables" />
+<!--
 	<component type="LuaScriptInstance" id="16777275">
 		<attribute name="Script File" value="LuaFile;Scripts/mainFPS.lua" />
 		<attribute name="Script Object Type" value="Character" />
@@ -25,6 +26,7 @@
 		<attribute name="inAirTimer" value="0" />
 		<attribute name="jumpTimer" value="0" />
 	</component>
+-->
 	<component type="CollisionShape" id="16777276">
 		<attribute name="Shape Type" value="Capsule" />
 		<attribute name="Size" value="0.8 2 0.8" />

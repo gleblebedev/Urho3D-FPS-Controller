@@ -178,8 +178,10 @@
 									<attribute name="Scale" value="0.01 0.01 0.01" />
 									<attribute name="Variables" />
 									<component type="StaticModel" id="5">
+<!--
 										<attribute name="Model" value="Model;Models/SM_rifle_remington700bdl_mid.mdl" />
 										<attribute name="Material" value="Material;Materials/rifleMTL.xml;Materials/rifleMTL.xml;Materials/rifleMTL.xml;Materials/rifleMTL.xml;Materials/rifleMTL.xml" />
+-->
 									</component>
 								</node>
 							</node>

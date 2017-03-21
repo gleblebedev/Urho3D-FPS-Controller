@@ -50,7 +50,7 @@ namespace Urho3D_FPS_Controller
             Quaternion dir = rot * Quaternion.FromAxisAngle(Vector3.UnitX, character.Controls.Pitch);
 
             // Turn head to camera pitch, but limit to avoid unnatural animation
-            Node headNode = characterNode.GetChild("Bip001 Head", true);
+            Node headNode = characterNode.GetChild("Bip01_Head", true);
             if (headNode != null)
             {
                 float limitPitch = MathHelper.Clamp(character.Controls.Pitch, -45.0f, 45.0f);
@@ -63,8 +63,11 @@ namespace Urho3D_FPS_Controller
             }
             if (firstPerson)
             {
-                CameraNode.Position = headNode.WorldPosition + rot * new Vector3(0.0f, 0.15f, 0.2f);
-                CameraNode.Rotation = dir;
+                if (headNode != null)
+                {
+                    CameraNode.Position = headNode.WorldPosition + rot*new Vector3(0.0f, 0.15f, 0.2f);
+                    CameraNode.Rotation = dir;
+                }
             }
             else
             {
@@ -106,6 +109,7 @@ namespace Urho3D_FPS_Controller
                         character.Controls.Set(Character.CTRL_BACK, input.GetKeyDown(Key.S));
                         character.Controls.Set(Character.CTRL_LEFT, input.GetKeyDown(Key.A));
                         character.Controls.Set(Character.CTRL_RIGHT, input.GetKeyDown(Key.D));
+                        character.Controls.Set(Character.CTRL_CROUCH, input.GetKeyDown(Key.Ctrl));
                     }
                     character.Controls.Set(Character.CTRL_JUMP, input.GetKeyDown(Key.Space));
                     //character.Controls.Set(Character.CT, input.GetMouseButtonDown(MouseButton.Left));

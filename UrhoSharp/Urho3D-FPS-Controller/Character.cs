@@ -270,23 +270,23 @@ namespace Urho3D_FPS_Controller
                 if (softGrounded)
                     moveDir *= 0.3f;
 
-                dropDetectShape.Position = Vector3.Lerp(dropDetectShape.Position, new Vector3(0.0f, 1.0f, 0.0f), timeStep * CROUCH_SPEED);
-                standDetectShape.Position = Vector3.Lerp(standDetectShape.Position, new Vector3(0.0f, 2.1f, 0.0f), timeStep * CROUCH_SPEED);
-                groundDetectShape.Position = Vector3.Lerp(groundDetectShape.Position, new Vector3(0.0f, 1.3f, 0.0f), timeStep * CROUCH_SPEED);
+                dropDetectShape.Position = Lerp(dropDetectShape.Position, new Vector3(0.0f, 1.0f, 0.0f), timeStep * CROUCH_SPEED);
+                standDetectShape.Position = Lerp(standDetectShape.Position, new Vector3(0.0f, 2.1f, 0.0f), timeStep * CROUCH_SPEED);
+                groundDetectShape.Position = Lerp(groundDetectShape.Position, new Vector3(0.0f, 1.3f, 0.0f), timeStep * CROUCH_SPEED);
 
-                shape.Position = Vector3.Lerp(shape.Position, new Vector3(0.0f, 1.5f, 0.0f), timeStep * CROUCH_SPEED);
-                shape.Size = Vector3.Lerp(shape.Size, new Vector3(0.8f, 1.0f, 0.8f), timeStep * CROUCH_SPEED);
+                shape.Position = Lerp(shape.Position, new Vector3(0.0f, 1.5f, 0.0f), timeStep * CROUCH_SPEED);
+                shape.Size = Lerp(shape.Size, new Vector3(0.8f, 1.0f, 0.8f), timeStep * CROUCH_SPEED);
 
                 crouching_ = true;
             }
             else
             {
-                dropDetectShape.Position = Vector3.Lerp(dropDetectShape.Position, new Vector3(0.0f, 0.0f, 0.0f), timeStep * CROUCH_SPEED);
-                standDetectShape.Position = Vector3.Lerp(standDetectShape.Position, new Vector3(0.0f, 1.1f, 0.0f), timeStep * CROUCH_SPEED);
-                groundDetectShape.Position = Vector3.Lerp(groundDetectShape.Position, new Vector3(0.0f, 0.3f, 0.0f), timeStep * CROUCH_SPEED);
+                dropDetectShape.Position = Lerp(dropDetectShape.Position, new Vector3(0.0f, 0.0f, 0.0f), timeStep * CROUCH_SPEED);
+                standDetectShape.Position = Lerp(standDetectShape.Position, new Vector3(0.0f, 1.1f, 0.0f), timeStep * CROUCH_SPEED);
+                groundDetectShape.Position = Lerp(groundDetectShape.Position, new Vector3(0.0f, 0.3f, 0.0f), timeStep * CROUCH_SPEED);
 
                 Vector3 pos = shape.Position;
-                Vector3 newPos = Vector3.Lerp(pos, new Vector3(0.0f, 1.0f, 0.0f), timeStep * CROUCH_SPEED);
+                Vector3 newPos = Lerp(pos, new Vector3(0.0f, 1.0f, 0.0f), timeStep * CROUCH_SPEED);
 
                 //  Adjust rigid body position to prevent penetration into the ground when standing
                 if (softGrounded && !dropDetected_)
@@ -299,7 +299,7 @@ namespace Urho3D_FPS_Controller
                 }
 
                 shape.Position = (newPos);
-                shape.Size = Vector3.Lerp(shape.Size, new Vector3(0.8f, 2.0f, 0.8f), timeStep * CROUCH_SPEED);
+                shape.Size = Lerp(shape.Size, new Vector3(0.8f, 2.0f, 0.8f), timeStep * CROUCH_SPEED);
 
 
                 if (crouching_)
@@ -326,7 +326,7 @@ namespace Urho3D_FPS_Controller
                 else
                     moveMag_ = Lerp(moveMag_, 0.0f, timeStep * MOVE_DECELERATION);
 
-                velocity_ = Vector3.Lerp(velocity_, rot * moveDir * moveMag_ * MOVE_FORCE, timeStep * AGILITY);
+                velocity_ = Lerp(velocity_, rot * moveDir * moveMag_ * MOVE_FORCE, timeStep * AGILITY);
                 rigidBody_.ApplyImpulse(velocity_);
                 Vector3 brakeForce = (planeVelocity * -BRAKE_FORCE);
                 rigidBody_.ApplyImpulse(brakeForce);
@@ -335,7 +335,7 @@ namespace Urho3D_FPS_Controller
             {
                 if (!(dropDetected_ && nearGround_))
                 {
-                    velocity_ = Vector3.Lerp(velocity_, rot * moveDir * moveMag_ * INAIR_MOVE_FORCE, timeStep * INAIR_AGILITY);
+                    velocity_ = Lerp(velocity_, rot * moveDir * moveMag_ * INAIR_MOVE_FORCE, timeStep * INAIR_AGILITY);
                     rigidBody_.ApplyImpulse(velocity_);
                     Vector3 brakeForce = (planeVelocity * -INAIR_BRAKE_FORCE);
                     rigidBody_.ApplyImpulse(brakeForce);
@@ -395,7 +395,7 @@ namespace Urho3D_FPS_Controller
             okToStand_ = true;
             highImpulseDetected_ = false;
 
-            modelNode_.Position = Vector3.Lerp(modelNode_.Position,
+            modelNode_.Position = Lerp(modelNode_.Position,
                 rigidBody_.Position + rigidBody_.LinearVelocity * timeStep * 4.0f,
                 timeStep * (10.0f + rigidBody_.LinearVelocity.Length / 8.0f
             ));
@@ -403,9 +403,22 @@ namespace Urho3D_FPS_Controller
             modelNode_.Rotation = rot;
         }
 
-        private float Lerp(float min, float max, float k)
+        private Vector3 Lerp(Vector3 a, Vector3 b, float blend)
         {
-            return min + (max - min) * k;
+            if (blend <= 0)
+                return a;
+            if (blend >= 1)
+                return b;
+            return a + (b - a)*blend;
+        }
+
+        private float Lerp(float a, float b, float blend)
+        {
+            if (blend <= 0)
+                return a;
+            if (blend >= 1)
+                return b;
+            return a + (b - a) * blend;
         }
 
 
